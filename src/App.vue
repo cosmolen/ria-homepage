@@ -1,5 +1,5 @@
 <template>
-  <div class="p-10 w-full flex flex-col justify-center items-center">
+  <div class="menu p-10 w-full flex flex-col justify-center items-center">
     <div class="mb-20 z-20">
       <img
         class="drop-shadow-md animate__animated animate__bounceInDown z-20"
@@ -48,14 +48,14 @@
     </div>
   </div>
 
-  <div class="absolute bottom-0 right-20 animate__animated animate__bounceInRight invisible md:visible">
+  <div class="fixed bottom-0 right-20 animate__animated animate__bounceInRight invisible md:visible">
     <img
       class="drop-shadow-lg z-10"
       src="./assets/bg_character.png"
     >
   </div>
 
-  <div class="absolute bottom-0 left-0 animate__animated animate__bounceInLeft invisible md:visible">
+  <div class="fixed bottom-0 left-0 animate__animated animate__bounceInLeft invisible md:visible">
     <img
       class="drop-shadow-lg z-10"
       src="./assets/bg_alpaca.png"
@@ -73,7 +73,7 @@ function createHeart() {
     heart.style.animationDuration = (Math.random() * 3) + 5 + 's'
     body.appendChild(heart)
 }
-setInterval(createHeart, 200)
+setInterval(createHeart, 150)
 setInterval(function name() {
     var heartArr = document.querySelectorAll('.fa-heart')
     if (heartArr.length > 200) {
@@ -91,14 +91,11 @@ export default {
 </script>
 
 <style>
-html {
-  overflow: hidden;
-}
-
 html,
 body,
 #app {
   height: 100%;
+  overflow-x: hidden;
 }
 #app {
   font-family: "M PLUS Rounded 1c", sans-serif;
@@ -107,6 +104,10 @@ body,
   background-image: url("./assets/bg.jpg");
   background-repeat: repeat;
   background-size: contain;
+}
+
+.menu {
+  min-height: 750px;
 }
 
 .bouncing:hover {
@@ -120,6 +121,7 @@ body,
   color: white;
   font-size: 1rem;
   position: absolute;
+  transition: ease-out;
   animation: heartMove linear 1;
   top: -10vh;
   z-index: 0;
@@ -127,10 +129,12 @@ body,
 
 @keyframes heartMove {
   0% {
+    opacity: 1;
     transform: translateY(-10vh);
   }
   100% {
-    transform: translateY(110vh);
+    opacity: 0.1;
+    transform: translateY(100vh);
   }
 }
 </style>
