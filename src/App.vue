@@ -8,7 +8,7 @@
       >
     </div>
 
-    <div class="mb-12 animate__animated animate__bounceInLeft z-20">
+    <div class="mb-12 animate__animated animate__bounceInUp z-20">
       <a
         href="https://twitch.tv/minazuki_ria"
         target="_blank"
@@ -21,27 +21,27 @@
       </a>
     </div>
 
-    <div class="mb-12 animate__animated animate__bounceInLeft z-20">
+    <div class="mb-12 animate__animated animate__bounceInUp z-20">
       <a
         href="https://twitter.com/Ria_Minazuki"
         target="_blank"
       >
         <img
           class="drop-shadow-lg bouncing"
-          alt="twitch"
+          alt="twitter"
           src="./assets/btn_twitter.png"
         >
       </a>
     </div>
 
-    <div class="animate__animated animate__bounceInLeft z-20">
+    <div class="animate__animated animate__bounceInUp z-20">
       <a
         href="https://www.youtube.com/channel/UCi3kDUWxB4FkIlT1tReYSmg"
         target="_blank"
       >
         <img
           class="drop-shadow-lg bouncing"
-          alt="twitch"
+          alt="youtube"
           src="./assets/btn_youtube.png"
         >
       </a>
@@ -64,28 +64,37 @@
 </template>
 
 <script>
-const body = document.querySelector('body')
-
-function createHeart() {
-    const heart = document.createElement('div')
-    heart.className = 'fas fa-heart'
-    heart.style.left = (Math.random() * 100) + 'vw'
-    heart.style.animationDuration = (Math.random() * 3) + 5 + 's'
-    body.appendChild(heart)
-}
-setInterval(createHeart, 150)
-setInterval(function name() {
-    var heartArr = document.querySelectorAll('.fa-heart')
-    if (heartArr.length > 200) {
-       heartArr[0].remove()
-    }
-},100)
-
 export default {
-  beforeMount() {
-    const script = document.createElement('script')
-    script.setAttribute('src', 'https://kit.fontawesome.com/4f3ce16e3e.js')
-    document.head.appendChild(script)
+  beforeMount () {
+    const srcs = [
+      'https://kit.fontawesome.com/4f3ce16e3e.js',
+    ]
+
+    for (const src of srcs) {
+      const script = document.createElement('script')
+      script.setAttribute('src', src)
+      document.head.appendChild(script)
+    }
+  },
+  async mounted () {
+    const interval = 150
+    const body = document.querySelector('body')
+
+    function createHeart() {
+        const heart = document.createElement('div')
+        heart.className = 'fas fa-heart'
+        heart.style.left = (Math.random() * 100) + 'vw'
+        heart.style.animationDuration = (Math.random() * 3) + 5 + 's'
+        body.appendChild(heart)
+    }
+
+    setInterval(createHeart, interval)
+    setInterval(() => {
+        const heartArr = document.querySelectorAll('.fa-heart')
+        if (heartArr.length > 200) {
+          heartArr[0].remove()
+        }
+    }, interval)
   }
 }
 </script>
@@ -113,7 +122,7 @@ body,
 .bouncing:hover {
   display: inline-block;
 
-  animation: bounce;
+  animation: swing;
   animation-duration: 0.75s;
 }
 
