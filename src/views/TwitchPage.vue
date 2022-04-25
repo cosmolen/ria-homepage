@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full h-full flex flex-col md:flex-row">
+  <div class="w-full h-full flex flex-col lg:flex-row">
     <iframe
-      class="w-full md:w-9/12 aspect-video z-50"
+      class="w-full lg:w-9/12 aspect-video z-50"
       src="https://player.twitch.tv/?channel=minazuki_ria&parent=minazuki-ria.moe"
     />
     <iframe
